@@ -1,7 +1,9 @@
 package christmas.exception;
 
+import static christmas.exception.ExceptionMessage.MENU_MAXIMUM_EXCEED;
+
 public class MenuMaximumExceedException extends CustomException {
     public MenuMaximumExceedException() {
-        super("메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
+        super(MENU_MAXIMUM_EXCEED);
     }
 }

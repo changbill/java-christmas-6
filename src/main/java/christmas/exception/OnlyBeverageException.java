@@ -1,7 +1,9 @@
 package christmas.exception;
 
+import static christmas.exception.ExceptionMessage.ONLY_BEVERAGE;
+
 public class OnlyBeverageException extends CustomException {
     public OnlyBeverageException() {
-        super("음료만 주문 시, 주문할 수 없습니다.");
+        super(ONLY_BEVERAGE);
     }
 }

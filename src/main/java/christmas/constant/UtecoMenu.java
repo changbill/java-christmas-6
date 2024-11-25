@@ -1,5 +1,8 @@
 package christmas.constant;
 
+import christmas.exception.InvalidDateException;
+import java.util.Arrays;
+
 public enum UtecoMenu {
     // 애피타이저
     BUTTON_MUSHROOM_SOUP("양송이수프", 6_000),
@@ -28,6 +31,13 @@ public enum UtecoMenu {
     UtecoMenu(String menuName, long price) {
         this.menuName = menuName;
         this.price = price;
+    }
+
+    public static UtecoMenu ofMenuName(String menuName) {
+        return Arrays.stream(UtecoMenu.values())
+                .filter(menu -> menu.menuName.equals(menuName))
+                .findAny()
+                .orElseThrow(InvalidDateException::new);
     }
 
     public String getMenuName() {

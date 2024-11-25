@@ -24,4 +24,8 @@ public enum EventBadge {
 
         return eventBadges.get(eventBadges.size() - 1).badgeName;
     }
+
+    public String getBadgeName() {
+        return badgeName;
+    }
 }

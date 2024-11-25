@@ -1,4 +1,4 @@
-package christmas.model;
+package christmas.constant;
 
 public enum UtecoMenu {
     BUTTON_MUSHROOM_SOUP("양송이수프", 6_000),

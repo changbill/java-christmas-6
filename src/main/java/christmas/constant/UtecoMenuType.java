@@ -1,17 +1,17 @@
-package christmas.model;
+package christmas.constant;
 
-import static christmas.model.UtecoMenu.BARBECUE_RIBS;
-import static christmas.model.UtecoMenu.BUTTON_MUSHROOM_SOUP;
-import static christmas.model.UtecoMenu.CAESAR_SALAD;
-import static christmas.model.UtecoMenu.CHAMPAGNE;
-import static christmas.model.UtecoMenu.CHOCOLATE_CAKE;
-import static christmas.model.UtecoMenu.ICE_CREAM;
-import static christmas.model.UtecoMenu.RED_WINE;
-import static christmas.model.UtecoMenu.SEAFOOD_PASTA;
-import static christmas.model.UtecoMenu.TAPAS;
-import static christmas.model.UtecoMenu.T_BONE_STEAK;
-import static christmas.model.UtecoMenu.XMAS_PASTA;
-import static christmas.model.UtecoMenu.ZERO_COKE;
+import static christmas.constant.UtecoMenu.BARBECUE_RIBS;
+import static christmas.constant.UtecoMenu.BUTTON_MUSHROOM_SOUP;
+import static christmas.constant.UtecoMenu.CAESAR_SALAD;
+import static christmas.constant.UtecoMenu.CHAMPAGNE;
+import static christmas.constant.UtecoMenu.CHOCOLATE_CAKE;
+import static christmas.constant.UtecoMenu.ICE_CREAM;
+import static christmas.constant.UtecoMenu.RED_WINE;
+import static christmas.constant.UtecoMenu.SEAFOOD_PASTA;
+import static christmas.constant.UtecoMenu.TAPAS;
+import static christmas.constant.UtecoMenu.T_BONE_STEAK;
+import static christmas.constant.UtecoMenu.XMAS_PASTA;
+import static christmas.constant.UtecoMenu.ZERO_COKE;
 
 import java.util.List;
 

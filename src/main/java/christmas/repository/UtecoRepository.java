@@ -8,4 +8,8 @@ public class UtecoRepository {
     public void setDateToVisit(int dateInput) {
         dateToVisit = LocalDate.of(2023, 12, dateInput);
     }
+
+    public LocalDate getDateToVisit() {
+        return dateToVisit;
+    }
 }

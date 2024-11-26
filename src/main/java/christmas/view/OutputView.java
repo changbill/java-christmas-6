@@ -17,7 +17,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printOrderStatus(OrderResponse orderResponse) {
+    public void printOrderPreview(OrderResponse orderResponse) {
         System.out.println(ORDER_MENU.getHeader());
         System.out.println(TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT.getHeader());
         System.out.println(GIVEAWAY_MENU.getHeader());

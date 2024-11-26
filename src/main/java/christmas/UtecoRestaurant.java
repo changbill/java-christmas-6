@@ -19,5 +19,6 @@ public class UtecoRestaurant {
 
     public void run() {
         controller.setDateToVisit(inputView.readDate());
+        outputView.printOrderPreview(controller.getOrderResponse(inputView.readOrder()));
     }
 }

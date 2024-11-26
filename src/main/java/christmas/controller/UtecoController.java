@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.model.OrderResponse;
 import christmas.service.UtecoService;
 
 public class UtecoController {
@@ -11,5 +12,9 @@ public class UtecoController {
 
     public void setDateToVisit(String dateValue) {
         utecoService.setDateToVisit(dateValue);
+    }
+
+    public OrderResponse getOrderResponse(String orderValue) {
+        return utecoService.getOrderResponse(orderValue);
     }
 }

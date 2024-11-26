@@ -26,9 +26,9 @@ public enum UtecoMenu {
     ;
 
     private final String menuName;
-    private final long price;
+    private final int price;
 
-    UtecoMenu(String menuName, long price) {
+    UtecoMenu(String menuName, int price) {
         this.menuName = menuName;
         this.price = price;
     }
@@ -44,7 +44,7 @@ public enum UtecoMenu {
         return menuName;
     }
 
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
 }

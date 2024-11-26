@@ -13,12 +13,14 @@ import static christmas.constant.UtecoMenu.T_BONE_STEAK;
 import static christmas.constant.UtecoMenu.XMAS_PASTA;
 import static christmas.constant.UtecoMenu.ZERO_COKE;
 
+import christmas.exception.InvalidOrderException;
+import java.util.Arrays;
 import java.util.List;
 
 public enum UtecoMenuType {
     APPETIZER(List.of(BUTTON_MUSHROOM_SOUP, TAPAS, CAESAR_SALAD)),
     MAIN(List.of(T_BONE_STEAK, BARBECUE_RIBS, SEAFOOD_PASTA, XMAS_PASTA)),
-    DESERT(List.of(CHOCOLATE_CAKE, ICE_CREAM)),
+    DESSERT(List.of(CHOCOLATE_CAKE, ICE_CREAM)),
     BEVERAGE(List.of(ZERO_COKE, RED_WINE, CHAMPAGNE)),
     ;
 
@@ -28,19 +30,11 @@ public enum UtecoMenuType {
         this.menus = menus;
     }
 
-    public boolean isAppetizer(UtecoMenu menu) {
-        return APPETIZER.menus.contains(menu);
+    public static UtecoMenuType getMenuType(UtecoMenu menu) {
+        return Arrays.stream(values())
+                .filter(menuType -> menuType.menus.contains(menu))
+                .findFirst()
+                .orElseThrow(InvalidOrderException::new);
     }
 
-    public boolean isMain(UtecoMenu menu) {
-        return MAIN.menus.contains(menu);
-    }
-
-    public boolean isDesert(UtecoMenu menu) {
-        return DESERT.menus.contains(menu);
-    }
-
-    public boolean isBeverage(UtecoMenu menu) {
-        return BEVERAGE.menus.contains(menu);
-    }
 }

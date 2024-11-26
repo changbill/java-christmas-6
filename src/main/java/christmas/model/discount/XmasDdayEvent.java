@@ -8,12 +8,22 @@ public class XmasDdayEvent {
     private static final int startDiscountAmount = 1_000;
     private static final int discountIncreaseUnit = 100;
 
-    private int discountAmount = 0;
+    private final LocalDate date;
 
-    public XmasDdayEvent(LocalDate targetDate) {
-        if(UtecoDiscountDate.isXmasDday(targetDate)) {
-            Period period = Period.between(UtecoDiscountDate.XMAS_D_DAY_DISCOUNT.getStartDate(), targetDate);
-            discountAmount = startDiscountAmount + period.getDays() * discountIncreaseUnit;
+    private XmasDdayEvent(LocalDate date) {
+        this.date = date;
+    }
+
+    public static XmasDdayEvent from(LocalDate date) {
+        if (UtecoDiscountDate.isXmasDday(date)) {
+            return new XmasDdayEvent(date);
         }
+
+        return null;
+    }
+
+    public int getXmasDdayDiscount() {
+        Period period = Period.between(UtecoDiscountDate.XMAS_D_DAY_DISCOUNT.getStartDate(), date);
+        return startDiscountAmount + period.getDays() * discountIncreaseUnit;
     }
 }

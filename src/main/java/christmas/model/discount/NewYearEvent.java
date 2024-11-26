@@ -1,50 +1,63 @@
 package christmas.model.discount;
 
+import static christmas.constant.UtecoDiscountConstant.DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU;
+import static christmas.constant.UtecoDiscountConstant.STAR_DISCOUNT_AMOUNT;
+
 import christmas.constant.UtecoDiscountDate;
+import christmas.constant.UtecoMenuType;
+import christmas.model.Orders;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class NewYearEvent {
-    private static final int discountUnitPerMenu = 2_023;
-    private static final int starDiscountAmount = 1_000;
+    private final LocalDate date;
+    private final Orders orders;
 
-    private int weekdaysDiscount = 0;
-    private int weekendsDiscount = 0;
-    private int specialDiscount = 0;
-    private boolean freeChampagne = false;
-
-    public NewYearEvent(LocalDate targetDate, int totalOrderAmount) {
-        UtecoDiscountDate.isNewYear(targetDate);
-        dayOfWeekDiscount(targetDate);
-        isDayOfStar(targetDate);
-        isPresentChampagne(totalOrderAmount);
+    private NewYearEvent(Orders orders) {
+        date = orders.getOrderDate();
+        this.orders = orders;
     }
 
-    private void dayOfWeekDiscount(LocalDate targetDate) {
-        if(isWeekend(targetDate)) {
-            // TODO: UtecoMenuType.MAIN 가 몇개 있는지 찾는 로직 Order 도메인에 추가
-            // TODO: weekendsDiscount = 해당 갯수 * discountUnitPerMenu;
-            return;
+    static NewYearEvent of(Orders orders) {
+        if(UtecoDiscountDate.isNewYear(orders.getOrderDate())) {
+            return new NewYearEvent(orders);
         }
-        // TODO: UtecoMenuType.DESERT 인지 찾는 로직 Order 도메인에 추가
-        // TODO: weekdaysDiscount = 해당 갯수 * discountUnitPerMenu;
+
+        return null;
     }
 
-    private void isDayOfStar(LocalDate targetDate) {
-        DayOfWeek dayOfWeek = targetDate.getDayOfWeek();
-        if(dayOfWeek.equals(DayOfWeek.SUNDAY) || targetDate.isEqual(LocalDate.of(2023, 12, 25))) {
-            specialDiscount = starDiscountAmount;
+    public int getWeekdaysDiscount() {
+        if(!isWeekend()) {
+            return orders.getMenuTypeCount(UtecoMenuType.DESSERT) * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU;
         }
+
+        return 0;
     }
 
-    private void isPresentChampagne(int totalOrderAmount) {
-        if(totalOrderAmount >= 120_000) {
-            freeChampagne = true;
+    public int getWeekendsDiscount() {
+        if(isWeekend()) {
+            return orders.getMenuTypeCount(UtecoMenuType.MAIN) * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU;
         }
+
+        return 0;
     }
 
-    private boolean isWeekend(LocalDate targetDate) {
-        DayOfWeek dayOfWeek = targetDate.getDayOfWeek();
+    public int getSpecialDiscount() {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        if(dayOfWeek.equals(DayOfWeek.SUNDAY) || date.isEqual(LocalDate.of(2023, 12, 25))) {
+            return STAR_DISCOUNT_AMOUNT;
+        }
+
+        return 0;
+    }
+
+    public boolean isPresentChampagne() {
+        return orders.getTotalOrderAmount() >= 120_000;
+    }
+
+    private boolean isWeekend() {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+
         return dayOfWeek.equals(DayOfWeek.FRIDAY) || dayOfWeek.equals(DayOfWeek.SATURDAY);
     }
 }

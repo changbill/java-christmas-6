@@ -25,7 +25,7 @@ public class UtecoParser {
     static Orders parseToOrders(String orderValue, LocalDate date) {
         List<String> splitByComma =
                 Arrays.stream(orderValue.split(",")).map(String::trim).toList();
-        UtecoValidator.matchOrderValue(splitByComma);
+        UtecoValidator.validateMatchOrderValue(splitByComma);
 
         return Orders.of(matchMenuNameAndQuantity(splitByComma), date);
     }
@@ -33,6 +33,7 @@ public class UtecoParser {
     private static List<Order> matchMenuNameAndQuantity(List<String> splitByComma) {
         Pattern pattern = Pattern.compile(ORDER_REGEX);
         List<Order> orders = getOrders(splitByComma, pattern);
+        UtecoValidator.validateReduplicationOrders(orders);
         UtecoValidator.validateOrdersException(orders);
 
         return orders;

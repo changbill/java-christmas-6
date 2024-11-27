@@ -8,6 +8,7 @@ import christmas.exception.InvalidOrderException;
 import christmas.exception.MenuMaximumExceedException;
 import christmas.exception.OnlyBeverageException;
 import christmas.model.Order;
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +21,7 @@ public class UtecoValidator {
         }
     }
 
-    static void matchOrderValue(List<String> splitByComma) {
+    static void validateMatchOrderValue(List<String> splitByComma) {
         Pattern pattern = Pattern.compile(ORDER_REGEX);
 
         for(String orderString : splitByComma) {
@@ -39,6 +40,12 @@ public class UtecoValidator {
 
         if(orders.stream().map(Order::getMenuType).allMatch(utecoMenuType -> utecoMenuType == BEVERAGE)) {
             throw new OnlyBeverageException();
+        }
+    }
+
+    static void validateReduplicationOrders(List<Order> orders) {
+        if(orders.size() != new HashSet<>(orders).size()) {
+            throw new InvalidOrderException();
         }
     }
 }

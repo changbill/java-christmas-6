@@ -1,6 +1,6 @@
 package christmas.constant.menu;
 
-import christmas.exception.InvalidDateException;
+import christmas.exception.InvalidOrderException;
 import java.util.Arrays;
 
 public enum UtecoMenu {
@@ -37,7 +37,7 @@ public enum UtecoMenu {
         return Arrays.stream(UtecoMenu.values())
                 .filter(menu -> menu.menuName.equals(menuName))
                 .findAny()
-                .orElseThrow(InvalidDateException::new);
+                .orElseThrow(InvalidOrderException::new);
     }
 
     public String getMenuName() {

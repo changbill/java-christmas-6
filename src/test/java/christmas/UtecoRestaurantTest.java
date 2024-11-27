@@ -90,6 +90,31 @@ public class UtecoRestaurantTest extends NsTest {
     }
 
     @Test
+    void 총주문_금액_10000원_이상부터_이벤트가_적용_테스트() {
+        assertSimpleTest(() -> {
+            run("3", "아이스크림-2");
+            assertThat(output().replace("/r/n", "/n")).doesNotContain("<총혜택 금액>\n"
+                    + "-6,246원");
+        });
+    }
+
+    @Test
+    void 고객이_메뉴판에_없는_메뉴를_입력하는_경우_테스트() {
+        assertSimpleTest(() -> {
+            run("3", "김치찌개-2", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 메뉴의_개수_1_미만을_입력하는_경우_테스트() {
+        assertSimpleTest(() -> {
+            run("3", "시저샐러드-1,시저샐러드-1", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
     void 날짜_예외테스트() {
         assertSimpleTest(() -> {
             run("a", "31", "타파스-1,제로콜라-1");

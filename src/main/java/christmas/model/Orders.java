@@ -1,6 +1,6 @@
 package christmas.model;
 
-import christmas.constant.UtecoMenuType;
+import christmas.constant.menu.UtecoMenuType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

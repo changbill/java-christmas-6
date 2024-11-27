@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.menu;
 
 import christmas.exception.InvalidDateException;
 import java.util.Arrays;

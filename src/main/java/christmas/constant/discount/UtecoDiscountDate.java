@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.discount;
 
 import java.time.LocalDate;
 
@@ -17,10 +17,6 @@ public enum UtecoDiscountDate {
 
     public LocalDate getStartDate() {
         return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
     }
 
     public static boolean isXmasDday(LocalDate dateToVisit) {

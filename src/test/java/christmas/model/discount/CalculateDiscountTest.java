@@ -1,11 +1,11 @@
 package christmas.model.discount;
 
-import static christmas.constant.UtecoDiscountConstant.DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU;
-import static christmas.constant.UtecoDiscountConstant.STAR_DISCOUNT_AMOUNT;
-import static christmas.constant.UtecoDiscountConstant.XMAS_D_DAY_DISCOUNT_UNIT;
-import static christmas.constant.UtecoDiscountConstant.XMAS_D_DAY_START_DISCOUNT;
-import static christmas.constant.UtecoMenu.*;
-import static christmas.constant.UtecoMenu.T_BONE_STEAK;
+import static christmas.constant.discount.UtecoDiscountConstant.DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU;
+import static christmas.constant.discount.UtecoDiscountConstant.STAR_DISCOUNT_AMOUNT;
+import static christmas.constant.discount.UtecoDiscountConstant.XMAS_D_DAY_DISCOUNT_UNIT;
+import static christmas.constant.discount.UtecoDiscountConstant.XMAS_D_DAY_START_DISCOUNT;
+import static christmas.constant.menu.UtecoMenu.*;
+import static christmas.constant.menu.UtecoMenu.T_BONE_STEAK;
 import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.model.Order;
@@ -75,7 +75,7 @@ class CalculateDiscountTest {
             );
             CalculateDiscount calculateDiscount = CalculateDiscount.of(orders);
 
-            assertEquals(calculateDiscount.getWeekdaysDiscount(), quantity * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
+            assertEquals(calculateDiscount.getWeekdaysDiscount(), -quantity * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
         }
 
         @ParameterizedTest
@@ -91,7 +91,7 @@ class CalculateDiscountTest {
             CalculateDiscount calculateDiscount = CalculateDiscount.of(orders);
 
             assertEquals(calculateDiscount.getWeekdaysDiscount(),
-                    quantity * 2 * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
+                    -quantity * 2 * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
         }
     }
 
@@ -109,7 +109,7 @@ class CalculateDiscountTest {
             );
             CalculateDiscount calculateDiscount = CalculateDiscount.of(orders);
 
-            assertEquals(calculateDiscount.getWeekendsDiscount(), quantity * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
+            assertEquals(calculateDiscount.getWeekendsDiscount(), -quantity * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
         }
 
         @ParameterizedTest
@@ -125,7 +125,7 @@ class CalculateDiscountTest {
             CalculateDiscount calculateDiscount = CalculateDiscount.of(orders);
 
             assertEquals(calculateDiscount.getWeekendsDiscount(),
-                    quantity * 2 * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
+                    -quantity * 2 * DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU);
         }
     }
 
@@ -142,7 +142,7 @@ class CalculateDiscountTest {
             );
             CalculateDiscount calculateDiscount = CalculateDiscount.of(orders);
 
-            assertEquals(calculateDiscount.getSpecialDiscount(), STAR_DISCOUNT_AMOUNT);
+            assertEquals(calculateDiscount.getSpecialDiscount(), -STAR_DISCOUNT_AMOUNT);
         }
 
         @ParameterizedTest
@@ -202,7 +202,7 @@ class CalculateDiscountTest {
             );
             CalculateDiscount calculateDiscount = CalculateDiscount.of(orders);
 
-            assertEquals(calculateDiscount.getXmasDdayDiscount(), XMAS_D_DAY_START_DISCOUNT + XMAS_D_DAY_DISCOUNT_UNIT * (dateNumber - 1));
+            assertEquals(calculateDiscount.getXmasDdayDiscount(), -(XMAS_D_DAY_START_DISCOUNT + XMAS_D_DAY_DISCOUNT_UNIT * (dateNumber - 1)));
         }
     }
 }

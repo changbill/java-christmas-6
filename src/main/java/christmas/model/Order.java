@@ -1,7 +1,7 @@
 package christmas.model;
 
-import christmas.constant.UtecoMenu;
-import christmas.constant.UtecoMenuType;
+import christmas.constant.menu.UtecoMenu;
+import christmas.constant.menu.UtecoMenuType;
 
 public class Order {
     private final UtecoMenu menu;

@@ -1,32 +1,33 @@
 package christmas.model;
 
-import christmas.model.discount.CalculateDiscount;
 import java.time.LocalDate;
 import java.util.List;
 
 public class OrderResponse {
     private final List<Order> orderList;
     private final LocalDate orderDate;
-    private int weekdaysDiscount;
-    private int weekendsDiscount;
-    private int specialDiscount;
-    private boolean freeChampagne;
-    private int xmasDdayDiscount;
+    private final int weekdaysDiscount;
+    private final int weekendsDiscount;
+    private final int specialDiscount;
+    private final boolean freeChampagne;
+    private final int xmasDdayDiscount;
 
-    private OrderResponse(Orders orders) {
-        orderList = orders.getOrderList();
-        orderDate = orders.getOrderDate();
-
-        CalculateDiscount calculateDiscount = CalculateDiscount.of(orders);
-        weekdaysDiscount = calculateDiscount.getWeekdaysDiscount();
-        weekendsDiscount = calculateDiscount.getWeekendsDiscount();
-        specialDiscount = calculateDiscount.getSpecialDiscount();
-        freeChampagne = calculateDiscount.isFreeChampagne();
-        xmasDdayDiscount = calculateDiscount.getXmasDdayDiscount();
-    }
-
-    public static OrderResponse from(Orders orders) {
-        return new OrderResponse(orders);
+    OrderResponse(
+            List<Order> orderList,
+            LocalDate orderDate,
+            int weekdaysDiscount,
+            int weekendsDiscount,
+            int specialDiscount,
+            boolean freeChampagne,
+            int xmasDdayDiscount
+    ) {
+        this.orderList = orderList;
+        this.orderDate = orderDate;
+        this.weekdaysDiscount = weekdaysDiscount;
+        this.weekendsDiscount = weekendsDiscount;
+        this.specialDiscount = specialDiscount;
+        this.freeChampagne = freeChampagne;
+        this.xmasDdayDiscount = xmasDdayDiscount;
     }
 
     public List<Order> getOrderList() {

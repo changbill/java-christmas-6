@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.discount;
 
 public class UtecoDiscountConstant {
     public static final int DAY_OF_THE_WEEK_DISCOUNT_UNIT_PER_MENU = 2_023;

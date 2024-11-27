@@ -20,7 +20,7 @@ public enum EventBadge {
 
     public static String decideEventBadge(final int benefitAmount) {
         List<EventBadge> eventBadges = Arrays.stream(EventBadge.values())
-                .takeWhile(eventBadge -> eventBadge.orMore <= benefitAmount).toList();
+                .takeWhile(eventBadge -> eventBadge.orMore <= -benefitAmount).toList();
 
         return eventBadges.get(eventBadges.size() - 1).badgeName;
     }

@@ -1,6 +1,6 @@
 package christmas.model.discount;
 
-import christmas.constant.UtecoDiscountDate;
+import christmas.constant.discount.UtecoDiscountDate;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -24,6 +24,6 @@ public class XmasDdayEvent {
 
     public int getXmasDdayDiscount() {
         Period period = Period.between(UtecoDiscountDate.XMAS_D_DAY_DISCOUNT.getStartDate(), date);
-        return startDiscountAmount + period.getDays() * discountIncreaseUnit;
+        return -(startDiscountAmount + period.getDays() * discountIncreaseUnit);
     }
 }

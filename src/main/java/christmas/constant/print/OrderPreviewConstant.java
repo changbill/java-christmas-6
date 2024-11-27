@@ -1,6 +1,6 @@
-package christmas.constant;
+package christmas.constant.print;
 
-public enum OrderStatusConstant {
+public enum OrderPreviewConstant {
     ORDER_MENU("<주문 메뉴>", "%s %,d개"),
     TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT("<할인 전 총주문 금액>", "%,d원"),
     GIVEAWAY_MENU("<증정 메뉴>", "%s %,d개"),
@@ -13,7 +13,7 @@ public enum OrderStatusConstant {
     private final String header;
     private final String value;
 
-    OrderStatusConstant(String header, String value) {
+    OrderPreviewConstant(String header, String value) {
         this.header = header;
         this.value = value;
     }

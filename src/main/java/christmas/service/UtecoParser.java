@@ -3,6 +3,7 @@ package christmas.service;
 import static christmas.constant.UtecoRegex.ORDER_REGEX;
 
 import christmas.exception.InvalidDateException;
+import christmas.exception.InvalidOrderException;
 import christmas.model.Order;
 import christmas.model.Orders;
 import christmas.util.Validator;
@@ -31,13 +32,22 @@ public class UtecoParser {
 
     private static List<Order> matchMenuNameAndQuantity(List<String> splitByComma) {
         Pattern pattern = Pattern.compile(ORDER_REGEX);
+        List<Order> orders = getOrders(splitByComma, pattern);
+        UtecoValidator.validateOrdersException(orders);
 
+        return orders;
+    }
+
+    private static List<Order> getOrders(List<String> splitByComma, Pattern pattern) {
         return splitByComma.stream()
                 .map(orderString -> {
                     Matcher matcher = pattern.matcher(orderString);
-                    String menuName = matcher.group(1);                         // 메뉴 이름
-                    int orderQuantity = Integer.parseInt(matcher.group(2));     // 주문량
-                    return Order.of(menuName, orderQuantity);
+                    if (matcher.matches()) {
+                        String menuName = matcher.group(1);                         // 메뉴 이름
+                        int orderQuantity = Integer.parseInt(matcher.group(2));     // 주문량
+                        return Order.of(menuName, orderQuantity);
+                    }
+                    throw new InvalidOrderException();
                 })
                 .toList();
     }

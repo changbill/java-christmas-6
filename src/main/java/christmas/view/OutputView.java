@@ -31,7 +31,7 @@ public class OutputView {
         boolean isPresentChampagne = printGiveawayMenu(orderResponse);
         printBenefitDetails(orderResponse, isPresentChampagne);
         printTotalBenefitAmount(orderResponse, isPresentChampagne);
-        printEstimatedPaymentAmountAfterDiscount(orderResponse, isPresentChampagne);
+        printEstimatedPaymentAmountAfterDiscount(orderResponse);
         printDecemberEventBadge(orderResponse, isPresentChampagne);
     }
 
@@ -95,12 +95,11 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printEstimatedPaymentAmountAfterDiscount(OrderResponse orderResponse, boolean isPresentChampagne) {
+    private void printEstimatedPaymentAmountAfterDiscount(OrderResponse orderResponse) {
         System.out.println(ESTIMATED_PAYMENT_AMOUNT_AFTER_DISCOUNT.getHeader());
         System.out.printf(
                 ESTIMATED_PAYMENT_AMOUNT_AFTER_DISCOUNT.getValue() + System.lineSeparator(),
-                getTotalOrderAmountBeforeDiscount(orderResponse) +
-                        getTotalBenefitAmount(orderResponse, isPresentChampagne)
+                getTotalOrderAmountBeforeDiscount(orderResponse) + getTotalBenefitAmount(orderResponse)
         );
         System.out.println();
     }
@@ -151,5 +150,12 @@ public class OutputView {
         }
 
         return result;
+    }
+
+    private int getTotalBenefitAmount(OrderResponse orderResponse) {
+        return orderResponse.getXmasDdayDiscount() +
+                orderResponse.getSpecialDiscount() +
+                orderResponse.getWeekdaysDiscount() +
+                orderResponse.getWeekendsDiscount();
     }
 }

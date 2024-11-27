@@ -18,7 +18,7 @@ public class CalculateDiscount {
             freeChampagne = newYearEvent.isPresentChampagne();
         }
 
-        XmasDdayEvent xmasDdayEvent = XmasDdayEvent.from(orders.getOrderDate());
+        XmasDdayEvent xmasDdayEvent = XmasDdayEvent.of(orders.getOrderDate());
         if(xmasDdayEvent != null) {
             xmasDdayDiscount = xmasDdayEvent.getXmasDdayDiscount();
         }

@@ -14,7 +14,7 @@ public class XmasDdayEvent {
         this.date = date;
     }
 
-    public static XmasDdayEvent from(LocalDate date) {
+    public static XmasDdayEvent of(LocalDate date) {
         if (UtecoDiscountDate.isXmasDday(date)) {
             return new XmasDdayEvent(date);
         }

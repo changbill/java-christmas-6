@@ -18,7 +18,29 @@ public class UtecoRestaurant {
     }
 
     public void run() {
-        controller.setDateToVisit(inputView.readDate());
-        outputView.printOrderPreview(controller.getOrderResponse(inputView.readOrder()));
+        inputDate();
+        inputOrder();
+    }
+
+    private void inputDate() {
+        while(true) {
+            try {
+                controller.setDateToVisit(inputView.readDate());
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void inputOrder() {
+        while(true) {
+            try {
+                outputView.printOrderPreview(controller.getOrderResponse(inputView.readOrder()));
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
